@@ -166,6 +166,10 @@ func checkWin() bool {
         }
     }
     
+    return true
+}
+
+func doWin() {
     Clear()
     
     fmt.Println("Hangman\n")
@@ -175,6 +179,10 @@ func checkWin() bool {
     
     printLetters(word, guessedIndexes)
     fmt.Println()
+    
+    fmt.Println("You won!")
+    
+    os.Exit(0)
 }
 
 func main() {
@@ -182,7 +190,8 @@ func main() {
     
     rand.Seed(time.Now().UnixNano())
     
-    word = words[rand.Intn(len(words))]
+    //word = words[rand.Intn(len(words))]
+    word = "oi"
     guessedIndexes = make([]bool, len(word))
     
     for i := 0; i < len(guessedIndexes); i++ {
@@ -196,7 +205,9 @@ func main() {
             gameOver()
         }
         
-        checkWin()
+        if checkWin() {
+            doWin()
+        }
         
         fmt.Println("Hangman\n")
         printHangman(wrong)
@@ -207,7 +218,7 @@ func main() {
         
         // ---
         
-        fmt.Printf("Enter letter (or to enter whole word just press Enter): ")
+        fmt.Printf("Enter letter: ")
         scanner.Scan()
         
         input := scanner.Text()
