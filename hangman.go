@@ -190,8 +190,7 @@ func main() {
     
     rand.Seed(time.Now().UnixNano())
     
-    //word = words[rand.Intn(len(words))]
-    word = "oi"
+    word = words[rand.Intn(len(words))]
     guessedIndexes = make([]bool, len(word))
     
     for i := 0; i < len(guessedIndexes); i++ {
